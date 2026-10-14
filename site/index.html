@@ -37,6 +37,17 @@
   .status h2{margin:0 0 10px;font-size:30px}
   .status p{color:var(--muted2);margin:0}
   .status.err h2{color:var(--accent)}
+  /* Loud success state */
+  #status-ok{border:2px solid var(--accent);border-radius:4px;background:#1c1508;
+    padding:44px 24px;margin-top:8px;box-shadow:0 0 44px rgba(255,116,61,.28)}
+  #status-ok .bolt{display:block;font-size:46px;line-height:1;margin-bottom:10px}
+  #status-ok h2{color:var(--accent);font-weight:900;text-transform:uppercase;
+    letter-spacing:-1px;line-height:1.02;font-size:clamp(42px,8.5vw,68px);
+    margin:0 0 14px;animation:pop .45s ease-out}
+  #status-ok p{color:var(--text);font-size:19px;line-height:1.5}
+  @keyframes pop{0%{transform:scale(.82)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+  #confetti-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  @media (prefers-reduced-motion: reduce){#status-ok h2{animation:none}}
   section.story{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:56px 0 8px}
   section.story h2{color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-size:15px;margin:4px 0 0}
   section.story p{color:var(--muted2);line-height:1.65;margin:0;font-size:17px}
@@ -112,7 +123,8 @@
     </form>
 
     <div class="status" id="status-ok" role="status">
-      <h2>You're on the list.</h2>
+      <span class="bolt" aria-hidden="true">⚡</span>
+      <h2>You're on the list!</h2>
       <p>Thanks for being part of it. If a run happens, you'll get first access — no commitment needed.</p>
     </div>
     <div class="status err" id="status-err" role="alert">
@@ -158,6 +170,59 @@
     var btn = document.getElementById('submit-btn');
     var ok = document.getElementById('status-ok');
     var err = document.getElementById('status-err');
+    // Lightweight self-contained confetti (no libraries, no external requests).
+    function fireConfetti() {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var canvas = document.createElement('canvas');
+      canvas.id = 'confetti-canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var colors = ['#ff743d', '#f4f0e8', '#ffd23d', '#38e1c6', '#ff4d6d'];
+      var parts = [];
+      for (var i = 0; i < 160; i++) {
+        parts.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * canvas.height * 0.35,
+          w: 6 + Math.random() * 7, h: 8 + Math.random() * 9,
+          vy: 2.2 + Math.random() * 3.4, vx: -1.4 + Math.random() * 2.8,
+          rot: Math.random() * Math.PI, vr: -0.16 + Math.random() * 0.32,
+          color: colors[i % colors.length], circle: Math.random() < 0.3
+        });
+      }
+      var start = null;
+      function frame(ts) {
+        if (!start) start = ts;
+        var elapsed = ts - start;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var alive = false;
+        for (var j = 0; j < parts.length; j++) {
+          var p = parts[j];
+          p.x += p.vx + Math.sin((elapsed / 260) + j) * 0.7;
+          p.y += p.vy;
+          p.rot += p.vr;
+          if (p.y < canvas.height + 30) alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          if (p.circle) {
+            ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2); ctx.fill();
+          } else {
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.sin(p.rot * 1.7)) + 2);
+          }
+          ctx.restore();
+        }
+        if (alive && elapsed < 4200) {
+          requestAnimationFrame(frame);
+        } else {
+          canvas.remove();
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       btn.disabled = true;
@@ -172,6 +237,8 @@
         if (!r.ok) throw new Error('bad status');
         form.style.display = 'none';
         ok.style.display = 'block';
+        ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        fireConfetti();
       }).catch(function () {
         err.style.display = 'block';
         btn.disabled = false;
