@@ -40,6 +40,17 @@ form backend) behind it.
   already tells visitors their email will be used for updates about
   this shirt, including a purchase link.
 
+## Launch status — LIVE 2026-10-14
+- Netlify project "lightningalertshirt" (team ezralopez, free plan),
+  imported from this repo, publish directory `site`.
+  Fallback URL: https://lightningalertshirt.netlify.app
+- Porkbun DNS: A @ → 75.2.60.5, CNAME www → lightningalertshirt.netlify.app
+  (TTL 600). HTTPS on (Let's Encrypt, auto-renews ~Jan 12, 2027).
+- Forms: form detection enabled; "waitlist" form is collecting.
+  Verified end-to-end with one test submission
+  (Foku Test / foku.assistant@gmail.com / M / 1) — ignore that row
+  in real counts, or delete it in the Netlify dashboard.
+
 ## Still TODO before launch
 - [x] About Us filled in (2026-10-14): Ezra (@ezraxlopez),
       Bradley (@bfisch1), Noah (@noah_reis_), Shub (@exploreshub),
