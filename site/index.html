@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lightning Shirt | Waitlist</title>
+<meta name="description" content="Waitlist for the lightning alert tee our crew wore on day 2. Waitlist only — no payment, no sale promised.">
+<meta property="og:title" content="Lightning Shirt | Waitlist">
+<meta property="og:description" content="Waitlist for the lightning alert tee our crew wore on day 2. Waitlist only — no payment, no sale promised.">
+<style>
+  :root{
+    --bg:#11110f; --text:#f4f0e8; --accent:#ff743d;
+    --muted:#b6b3aa; --muted2:#cfcbc2; --field:#20211c; --border:#56564b; --line:#383830;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:48px 24px 0}
+  h1{font-weight:900;letter-spacing:-4px;line-height:.95;font-size:clamp(52px,7.2vw,88px);margin:24px 0 20px}
+  h1 .accent{color:var(--accent)}
+  .intro{color:var(--muted2);font-size:19px;line-height:1.55;max-width:640px;margin:0 0 36px}
+  figure.crew{margin:0 0 44px}
+  figure.crew img{width:100%;height:auto;display:block;border-radius:2px}
+  .formcol{max-width:700px;margin:0 auto}
+  .preface{text-align:center;color:var(--muted2);margin:0 0 18px;font-size:16px}
+  form.card{border-top:2px solid var(--accent);background:transparent;padding:28px 4px 8px}
+  label{display:block;font-size:14px;color:var(--muted2);margin:0 0 8px}
+  .field{margin-bottom:20px}
+  input,select{width:100%;background:var(--field);border:1px solid var(--border);color:var(--text);
+    padding:14px;font-size:16px;border-radius:2px;font-family:inherit}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .trap{position:absolute;left:-9999px;top:-9999px;height:1px;width:1px;overflow:hidden}
+  button{width:100%;background:var(--accent);color:#11110f;border:0;padding:16px 18px;font-size:17px;
+    font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-radius:2px;font-family:inherit}
+  button:disabled{opacity:.6;cursor:wait}
+  .fineprint{color:var(--muted);font-size:13px;line-height:1.5;margin:14px 0 0}
+  .status{display:none;text-align:center;padding:32px 0}
+  .status h2{margin:0 0 10px;font-size:30px}
+  .status p{color:var(--muted2);margin:0}
+  .status.err h2{color:var(--accent)}
+  section.story{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:56px 0 8px}
+  section.story h2{color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-size:15px;margin:4px 0 0}
+  section.story p{color:var(--muted2);line-height:1.65;margin:0;font-size:17px}
+  .proof{color:var(--muted);font-size:14px;padding:18px 0 0}
+  section.about{padding:56px 0 8px;border-top:1px solid var(--line);margin-top:40px}
+  section.about h2{color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-size:15px;margin:0 0 22px}
+  .makers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .maker{border:1px solid var(--line);padding:18px;border-radius:2px}
+  .maker .name{font-weight:700;font-size:17px;margin:0 0 6px}
+  .maker a{color:var(--accent);text-decoration:none;font-size:15px}
+  footer{border-top:1px solid var(--line);margin-top:48px;padding:22px 0 34px;color:var(--muted);font-size:14px}
+  @media (max-width:650px){
+    .wrap{padding:28px 16px 0}
+    h1{letter-spacing:-2px}
+    .row{grid-template-columns:1fr}
+    section.story{grid-template-columns:1fr}
+    .makers{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Everyone got the alert.<br><span class="accent">Not everyone gets the shirt.</span></h1>
+  <p class="intro">This is the waitlist for the tee our crew wore on day 2. Joining the list is interest only — no payment is taken and no sale is promised.</p>
+
+  <figure class="crew">
+    <img src="https://lightning-alert-tees-interest.bfisch11.chatgpt.site/crew-hotel-selfie.jpg" alt="Our crew wearing the shirts" fetchpriority="high" width="1179" height="885">
+  </figure>
+
+  <div class="formcol">
+    <p class="preface">Two minutes. First access if a small run happens.</p>
+
+    <!--
+      DATA CAPTURE: Netlify Forms (see ../README.md).
+      Submissions are stored by Netlify as structured rows:
+      created_at, name, email, size, quantity  (+ honeypot "website").
+      Export: Netlify dashboard > Forms > waitlist > Download CSV,
+      then run ../tools/parse_waitlist.py on the CSV for size totals
+      and a deduplicated email list ready for the Shopify launch email.
+    -->
+    <form class="card" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="website" aria-label="Join the waitlist" id="waitlist-form">
+      <input type="hidden" name="form-name" value="waitlist">
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" name="name" type="text" required autocomplete="name" maxlength="100" placeholder="Your name">
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" required autocomplete="email" maxlength="254" placeholder="you@example.com">
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="f-size">Shirt size</label>
+          <select id="f-size" name="size" required>
+            <option value="" disabled selected>Select size</option>
+            <option>XS</option><option>S</option><option>M</option><option>L</option>
+            <option>XL</option><option>2XL</option><option>3XL</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-qty">Quantity</label>
+          <input id="f-qty" name="quantity" type="number" required min="1" max="100" step="1" value="1">
+        </div>
+      </div>
+      <p class="trap" aria-hidden="true">
+        <label>Website <input name="website" tabindex="-1" autocomplete="off"></label>
+      </p>
+      <button type="submit" id="submit-btn"><span>Join the waitlist</span><span aria-hidden="true">&#8599;</span></button>
+      <p class="fineprint">Non-binding interest only — no payment, and no sale is promised. We'll only use your email for updates about this shirt, including a link to buy if a run happens.</p>
+    </form>
+
+    <div class="status" id="status-ok" role="status">
+      <h2>You're on the list.</h2>
+      <p>Thanks for being part of it. If a run happens, you'll get first access — no commitment needed.</p>
+    </div>
+    <div class="status err" id="status-err" role="alert">
+      <h2>That didn't go through.</h2>
+      <p>Your signup couldn't be saved. Please try again.</p>
+    </div>
+  </div>
+
+  <section class="story">
+    <h2>The Story</h2>
+    <div>
+      <p>Night one ended early — lightning stopped the show and the whole venue was evacuated. The next morning we had these shirts made, wore them on day 2, and somehow ended up in the local paper and all over EDM socials. No shirts have been sold yet; this list is simply a head count before we decide on a small run.</p>
+      <p class="proof">As seen in the Desert Sun and in DJ Lovers Club and EDM Lifestyle posts.</p>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2>About Us</h2>
+    <div class="makers">
+      <div class="maker"><p class="name">Ezra</p><a href="https://instagram.com/ezraxlopez" target="_blank" rel="noopener">@ezraxlopez</a></div>
+      <div class="maker"><p class="name">Bradley</p><a href="https://instagram.com/bfisch1" target="_blank" rel="noopener">@bfisch1</a></div>
+      <div class="maker"><p class="name">Noah</p><a href="https://instagram.com/noah_reis_" target="_blank" rel="noopener">@noah_reis_</a></div>
+      <div class="maker"><p class="name">Shub</p><a href="https://instagram.com/exploreshub" target="_blank" rel="noopener">@exploreshub</a></div>
+      <div class="maker"><p class="name">Pavan</p><a href="https://instagram.com/pavan.brahmbhatt" target="_blank" rel="noopener">@pavan.brahmbhatt</a></div>
+      <div class="maker"><p class="name">Niraj</p><a href="https://instagram.com/nazz9" target="_blank" rel="noopener">@nazz9</a></div>
+    </div>
+  </section>
+
+  <footer>Unofficial fan-made shirt. Not affiliated with the festival.</footer>
+</div>
+
+<script>
+  // Progressive enhancement: submit as JSON-ish form data via fetch so the
+  // visitor stays on the page (mirrors the original site's behaviour).
+  // Without JS, the plain form POST still records the submission.
+  (function () {
+    var form = document.getElementById('waitlist-form');
+    var btn = document.getElementById('submit-btn');
+    var ok = document.getElementById('status-ok');
+    var err = document.getElementById('status-err');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.firstElementChild.textContent = 'Joining\u2026';
+      var data = new FormData(form);
+      data.set('quantity', String(parseInt(data.get('quantity'), 10) || 1));
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      }).then(function (r) {
+        if (!r.ok) throw new Error('bad status');
+        form.style.display = 'none';
+        ok.style.display = 'block';
+      }).catch(function () {
+        err.style.display = 'block';
+        btn.disabled = false;
+        btn.firstElementChild.textContent = 'Join the waitlist';
+      });
+    });
+  })();
+</script>
+</body>
+</html>
