@@ -29,6 +29,17 @@ GitHub Pages alone will NOT work for data capture (static only) —
 it can host the page, but the form needs Netlify (or an equivalent
 form backend) behind it.
 
+## Our own signup database
+`data/signups.csv` is the canonical list of waitlist signups, kept by us
+(not by Netlify/FormSubmit). It is **local only and gitignored** — it
+contains real email addresses and this repo is public.
+- **Update it:** `python3 tools/sync_signups.py` — scans the
+  foku.assistant@gmail.com inbox for signup notification emails (both the
+  Netlify Forms era and the current FormSubmit era, same subject line),
+  parses name/email/size/quantity, skips test submissions, dedupes by
+  message ID, and prints the size tally. Safe to re-run any time.
+- Columns: received_at_utc, name, email, size, quantity, source, message_id.
+
 ## Using the data
 - **How many of each size?** Export CSV from Netlify, then:
   `python3 tools/parse_waitlist.py export.csv --out-dir out`
