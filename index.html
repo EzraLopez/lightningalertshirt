@@ -3,14 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
 <title>Lightning Shirt | Waitlist</title>
 <meta name="description" content="Waitlist for the lightning alert tee our crew wore on day 2. Waitlist only — no payment, no sale promised.">
 <meta property="og:title" content="Lightning Shirt | Waitlist">
 <meta property="og:description" content="Waitlist for the lightning alert tee our crew wore on day 2. Waitlist only — no payment, no sale promised.">
 <style>
   :root{
+    color-scheme:dark;
     --bg:#11110f; --text:#f4f0e8; --accent:#ff743d;
     --muted:#b6b3aa; --muted2:#cfcbc2; --field:#20211c; --border:#56564b; --line:#383830;
+    --success-bg:#1c1508; --on-accent:#11110f;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      color-scheme:light;
+      --bg:#f6f2e9; --text:#1a1915; --accent:#c05206;
+      --muted:#6f6a5e; --muted2:#4d483e; --field:#fffdf7; --border:#b3ab99; --line:#ddd5c2;
+      --success-bg:#ffedda; --on-accent:#fff7ea;
+    }
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
@@ -29,7 +40,7 @@
     padding:14px;font-size:16px;border-radius:2px;font-family:inherit}
   .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .trap{position:absolute;left:-9999px;top:-9999px;height:1px;width:1px;overflow:hidden}
-  button{width:100%;background:var(--accent);color:#11110f;border:0;padding:16px 18px;font-size:17px;
+  button{width:100%;background:var(--accent);color:var(--on-accent);border:0;padding:16px 18px;font-size:17px;
     font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-radius:2px;font-family:inherit}
   button:disabled{opacity:.6;cursor:wait}
   .fineprint{color:var(--muted);font-size:13px;line-height:1.5;margin:14px 0 0}
@@ -38,7 +49,7 @@
   .status p{color:var(--muted2);margin:0}
   .status.err h2{color:var(--accent)}
   /* Loud success state */
-  #status-ok{border:2px solid var(--accent);border-radius:4px;background:#1c1508;
+  #status-ok{border:2px solid var(--accent);border-radius:4px;background:var(--success-bg);
     padding:44px 24px;margin-top:8px;box-shadow:0 0 44px rgba(255,116,61,.28)}
   #status-ok .bolt{display:block;font-size:46px;line-height:1;margin-bottom:10px}
   #status-ok h2{color:var(--accent);font-weight:900;text-transform:uppercase;
